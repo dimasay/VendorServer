@@ -1,6 +1,5 @@
 package com.vendor.controllers;
 
-import com.vendor.models.AbstractSensor;
 import com.vendor.models.PressureSensor;
 import com.vendor.models.User;
 import com.vendor.services.PressureSensorService;

@@ -3,8 +3,6 @@ package com.vendor.aws;
 import com.amazonaws.services.s3.AmazonS3;
 import com.vendor.S3Utils;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

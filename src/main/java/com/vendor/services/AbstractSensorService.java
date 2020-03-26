@@ -12,7 +12,7 @@ public abstract class AbstractSensorService<T extends AbstractSensor> {
     private SensorRepository<AbstractSensor> sensorRepository;
     private S3Factory s3Factory;
 
-    public void  postDataToDB(T abstractSensor) {
+    public void postDataToDB(T abstractSensor) {
         sensorRepository.save(abstractSensor);
     }
 

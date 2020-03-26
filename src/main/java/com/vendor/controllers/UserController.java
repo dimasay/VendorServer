@@ -21,7 +21,7 @@ public class UserController {
 
     @PutMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public void updateUser(@RequestBody UpdateUserRequest updateUserRequest)  {
+    public void updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
         try {
             userService.updateUser(updateUserRequest);
         } catch (UserDoesntExists userDoesntExists) {
@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    public void deleteUser(@PathVariable("userId") String userId){
+    public void deleteUser(@PathVariable("userId") String userId) {
         userService.deleteUser(Long.parseLong(userId));
     }
 }
