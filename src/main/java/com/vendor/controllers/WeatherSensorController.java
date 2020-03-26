@@ -16,26 +16,11 @@ public class WeatherSensorController implements SensorController {
 
     @PostMapping(consumes = "application/json")
     public void postSensorData(AbstractSensor abstractSensor, @AuthenticationPrincipal User user) {
-        switch (user.getStorageType()) {
-            case DATA_BASE:
-                weatherSensorService.postDataToDB(abstractSensor);
-                break;
-            case S3:
-                weatherSensorService.postDataToS3FromObject(abstractSensor, user);
-                break;
-        }
+        weatherSensorService.postDataToDB(abstractSensor);
     }
 
     @PostMapping(consumes = "multipart/form-data")
     public void postSensorData(MultipartFile file, @AuthenticationPrincipal User user) {
-        switch (user.getStorageType()) {
-            case DATA_BASE:
-                //тут будет реализация
-//                weatherSensorService.postDataToDB(file);
-                break;
-            case S3:
-                weatherSensorService.postDataToS3FromMultipartFile(file, user);
-                break;
-        }
+        weatherSensorService.postDataToS3FromMultipartFile(file, user);
     }
 }

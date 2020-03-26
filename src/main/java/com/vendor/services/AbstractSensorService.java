@@ -16,13 +16,7 @@ public abstract class AbstractSensorService {
         sensorRepository.save(abstractSensor);
     }
 
-    public void postDataToS3FromObject(AbstractSensor abstractSensor, User user) {
-        String name = String.valueOf(abstractSensor.hashCode());
-        s3Factory.uploadFileFromObject(name, abstractSensor, user.getBucketName());
-    }
-
     public void postDataToS3FromMultipartFile(MultipartFile multipartFile, User user) {
-        String name = String.valueOf(multipartFile.hashCode());
         s3Factory.uploadFileFromMultipart(multipartFile, user.getBucketName());
     }
 }

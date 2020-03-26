@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -20,10 +19,4 @@ public class User {
     private String name;
     @NonNull
     private String bucketName;
-    @NotNull
-    private StorageType storageType;
-
-    public enum StorageType {
-        DATA_BASE, S3
-    }
 }
