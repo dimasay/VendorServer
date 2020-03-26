@@ -4,12 +4,12 @@ import com.vendor.dtos.CreateUserRequest;
 import com.vendor.dtos.UpdateUserRequest;
 import com.vendor.exceptions.UserDoesntExists;
 import com.vendor.services.UserService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/user")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserController {
     private UserService userService;
 
@@ -21,7 +21,16 @@ public class UserController {
 
     @PutMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public void updateUser(@RequestBody UpdateUserRequest updateUserRequest) throws UserDoesntExists {
-        userService.updateUser(updateUserRequest);
+    public void updateUser(@RequestBody UpdateUserRequest updateUserRequest)  {
+        try {
+            userService.updateUser(updateUserRequest);
+        } catch (UserDoesntExists userDoesntExists) {
+            userDoesntExists.printStackTrace();
+        }
+    }
+
+    @DeleteMapping
+    public void deleteUser(@PathVariable("userId") String userId){
+        userService.deleteUser(Long.parseLong(userId));
     }
 }

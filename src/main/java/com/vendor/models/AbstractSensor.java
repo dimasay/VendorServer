@@ -1,13 +1,14 @@
 package com.vendor.models;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-@EqualsAndHashCode
+@Data
 public abstract class AbstractSensor {
     @javax.persistence.Id
-    private long Id;
+    @Column(name = "id")
+    private long id;
 }

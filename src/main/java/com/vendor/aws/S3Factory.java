@@ -2,6 +2,7 @@ package com.vendor.aws;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.vendor.S3Utils;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class S3Factory {
-    @Value("${s3.folder}")
-    String defaultBaseFolder;
     private AmazonS3 amazonS3;
 
     public void uploadFileFromMultipart(MultipartFile multipartFile, String bucketName) {
@@ -25,7 +24,7 @@ public class S3Factory {
                 byte[] content = S3Utils.convert(multipartFile);
                 if (content != null) {
                     fileOutputStream.write(content);
-                    amazonS3.putObject(bucketName, defaultBaseFolder + "/" + file.getName(), file);
+                    amazonS3.putObject(bucketName, file.getAbsolutePath(), file);
                 }
             }
         } catch (IOException e) {

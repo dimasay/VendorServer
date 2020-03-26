@@ -4,15 +4,15 @@ import com.vendor.aws.S3Factory;
 import com.vendor.models.AbstractSensor;
 import com.vendor.models.User;
 import com.vendor.repositories.SensorRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-@RequiredArgsConstructor
-public abstract class AbstractSensorService {
+@AllArgsConstructor
+public abstract class AbstractSensorService<T extends AbstractSensor> {
     private SensorRepository<AbstractSensor> sensorRepository;
     private S3Factory s3Factory;
 
-    public void postDataToDB(AbstractSensor abstractSensor) {
+    public void  postDataToDB(T abstractSensor) {
         sensorRepository.save(abstractSensor);
     }
 
